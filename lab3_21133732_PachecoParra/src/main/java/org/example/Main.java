@@ -1,19 +1,40 @@
 package org.example;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
-    public static void main(String[] args) {
-        // Press Alt+Intro with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+    public static void main(String[] args){
 
-        // Press Mayús+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        // data
 
-            // Press Mayús+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        List <Chatbot> chatbotsIniciales = new ArrayList<>();
+        List <Flow> flows = new ArrayList<>();
+        List <Option> options = new ArrayList<>();
+        List <String> keywords = new ArrayList<>();
+        keywords.add("key1");
+        keywords.add("key2");
+
+        Option o1 = new Option(1, "mensaje1", 1, 1, keywords);
+        options.add(o1);
+        Flow f1 = new Flow(1, "mensaje1", options);
+        flows.add(f1);
+        Chatbot c1 = new Chatbot(1, "chatbot1", "mensaje1", 1, flows);
+
+
+
+
     }
+
+
+
 }
+
+
+
+
+
+
+
+
+
