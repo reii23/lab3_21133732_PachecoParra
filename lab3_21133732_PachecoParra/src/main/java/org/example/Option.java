@@ -11,7 +11,7 @@ public class Option {
 
 
     // RFN1: TDA Option - constructor
-public Option(int code, String message, int chatbotCodeLink, int initialFlowCodeLink, List<String> keywords) {
+    public Option(int code, String message, int chatbotCodeLink, int initialFlowCodeLink, List<String> keywords) {
         this.code = code;
         this.message = message;
         this.chatbotCodeLink = chatbotCodeLink;
@@ -38,5 +38,15 @@ public Option(int code, String message, int chatbotCodeLink, int initialFlowCode
     public List<String> getKeywords() {
         return keywords;
     }
-}
 
+    @Override
+    public String toString() {
+        return "Option{" +
+                "code=" + code +
+                ", message='" + message + '\'' +
+                ", chatbotCodeLink=" + chatbotCodeLink +
+                ", initialFlowCodeLink=" + initialFlowCodeLink +
+                ", keywords=" + keywords +
+                '}';
+    }
+}

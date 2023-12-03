@@ -32,5 +32,15 @@ public class Flow implements InterfaceFlow{
             this.options.add(option);
         }
     }
+
+    @Override
+    public String toString() {
+        return "Flow{" +
+                "id=" + id +
+                ", nameMsg='" + nameMsg + '\'' +
+                ", options=" + options +
+                '}';
+    }
 }
+
 

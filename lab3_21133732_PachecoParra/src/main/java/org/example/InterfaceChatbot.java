@@ -1,5 +1,5 @@
 package org.example;
 
-public interface InterfaceChabot {
+public interface InterfaceChatbot {
     public void chatbotAddFlow(Flow flow);
 }
