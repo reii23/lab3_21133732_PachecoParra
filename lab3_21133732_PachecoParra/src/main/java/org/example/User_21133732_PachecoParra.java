@@ -1,10 +1,10 @@
 package org.example;
 
-public class User {
+public class User_21133732_PachecoParra {
     String username;
     boolean isAdmin;
 
-    public User(String username, boolean isAdmin) {
+    public User_21133732_PachecoParra(String username, boolean isAdmin) {
         this.username = username;
         this.isAdmin = isAdmin;
     }

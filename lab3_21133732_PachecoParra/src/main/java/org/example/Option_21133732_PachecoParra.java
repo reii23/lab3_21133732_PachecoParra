@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.List;
 
-public class Option {
+public class Option_21133732_PachecoParra {
     private int code;
     private String message;
     private int chatbotCodeLink;
@@ -11,7 +11,7 @@ public class Option {
 
 
     // RFN1: TDA Option - constructor
-    public Option(int code, String message, int chatbotCodeLink, int initialFlowCodeLink, List<String> keywords) {
+    public Option_21133732_PachecoParra(int code, String message, int chatbotCodeLink, int initialFlowCodeLink, List<String> keywords) {
         this.code = code;
         this.message = message;
         this.chatbotCodeLink = chatbotCodeLink;

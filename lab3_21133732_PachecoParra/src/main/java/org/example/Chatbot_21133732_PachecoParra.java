@@ -2,15 +2,15 @@ package org.example;
 
 import java.util.List;
 
-    public class Chatbot implements InterfaceChatbot {
+    public class Chatbot_21133732_PachecoParra implements InterfaceChatbot_21133732_PachecoParra {
         private int chatbotID;
         private String name;
         private String welcomeMessage;
         private int startFlowId;
-        private List<Flow> flows;
+        private List<Flow_21133732_PachecoParra> flows;
 
         // RFN4: TDA Chatbot - constructor - chatbot
-        public Chatbot(int chatbotID, String name, String welcomeMessage, int startFlowId, List<Flow> flows) {
+        public Chatbot_21133732_PachecoParra(int chatbotID, String name, String welcomeMessage, int startFlowId, List<Flow_21133732_PachecoParra> flows) {
             this.chatbotID = chatbotID;
             this.name = name;
             this.welcomeMessage = welcomeMessage;
@@ -34,12 +34,12 @@ import java.util.List;
             return startFlowId;
         }
 
-        public List<Flow> getFlows() {
+        public List<Flow_21133732_PachecoParra> getFlows() {
             return flows;
         }
 
         // RFN5: TDA Chatbot - modificador - chatbotAddFlow
-        public void chatbotAddFlow(Flow flow) {
+        public void chatbotAddFlow(Flow_21133732_PachecoParra flow) {
             if (!this.flows.contains(flow)) {
                 this.flows.add(flow);
             }

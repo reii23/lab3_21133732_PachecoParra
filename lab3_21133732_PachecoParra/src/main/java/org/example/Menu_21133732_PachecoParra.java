@@ -3,7 +3,7 @@ package org.example;
 import java.util.Scanner;
 import static java.lang.System.exit;
 
-public class Menu {
+public class Menu_21133732_PachecoParra {
     // Menú de opciones con Scanner
     // 1. Crear un Option
     // 2. Crear un Flow
