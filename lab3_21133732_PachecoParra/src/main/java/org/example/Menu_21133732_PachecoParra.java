@@ -1,127 +1,165 @@
 package org.example;
 
+import java.util.List;
 import java.util.Scanner;
-import static java.lang.System.exit;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Menu_21133732_PachecoParra {
-    // Menú de opciones con Scanner
-    // 1. Crear un Option
-    // 2. Crear un Flow
-    // 3. Crear un Chatbot
-    // 4. Crear un Sistema
-    // 5. Salir
-
-    // Menú Option
-    // 1. Ingrese el código de la opción
-    // 2. Ingrese el mensaje de la opción
-    // 3. Ingrese el código del chatbot al que se vincula la opción
-    // 4. Ingrese el código del flow al que se vincula la opción
-    // 5. Ingrese las palabras claves de la opción
-
-    // Menú Flow
-    // 1. Ingrese el código del flow
-    // 2. Ingrese el mensaje del flow
-    // 3. Ingrese el código del chatbot al que se vincula el flow
-    // 4. Ingrese las opciones del flow
-
-    // Menú Chatbot
-    // 1. Ingrese el código del chatbot
-    // 2. Ingrese el nombre del chatbot
-    // 3. Ingrese el mensaje de bienvenida del chatbot
-    // 4. Ingrese el código del flow inicial del chatbot
-    // 5. Ingrese los flows del chatbot
-
-    // Menú Sistema
-    // 1. Ingrese el nombre del sistema
-    // 2. Ingrese el código del chatbot inicial del sistema
-    // 3. Ingrese los chatbots del sistema
-    // 4. Ingrese los usuarios registrados del sistema
-    // 5. Ingrese el usuario logeado del sistema
-    // 6. Ingrese el historial de mensajes del sistema
-
     public static void main(String[] args) {
-        var input = new Scanner(System.in);
-        var selectedOption = 0;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("### Sistema de Chatbots - Inicio ###");
+        System.out.println("1. Login de Usuario");
+        System.out.println("2. Registro de Usuario");
+        System.out.println("INTRODUZCA SU OPCIÓN:");
+        int opcion = scanner.nextInt();
 
-        while (selectedOption != 5) {
-            selectedOption = showMenu();
-            switch (selectedOption) {
-                case 1:
-                    System.out.println("Ha seleccionado la opcion 1: Crear un Option");
-                    System.out.println("Ingrese el codigo de la opcion y luego presione ENTER:");
-                    var inputOptionCode = input.nextInt();
-                    System.out.println("Ingrese el mensaje de la opcion y luego presione ENTER:");
-                    var inputOptionMessage = input.next();
-                    System.out.println("Ingrese el codigo del chatbot al que se vincula la opcion y luego presione ENTER:");
-                    var inputOptionChatbotCode = input.nextInt();
-                    System.out.println("Ingrese el codigo del flow al que se vincula la opcion y luego presione ENTER:");
-                    var inputOptionFlowCode = input.nextInt();
-                    System.out.println("Ingrese las palabras claves de la opcion y luego presione ENTER:");
-                    var inputOptionKeywords = input.next();
-                    break;
-                case 2:
-                    System.out.println("Ha seleccionado la opcion 2: Crear un Flow");
-                    System.out.println("Ingrese el codigo del flow y luego presione ENTER:");
-                    var inputFlowCode = input.nextInt();
-                    System.out.println("Ingrese el mensaje del flow y luego presione ENTER:");
-                    var inputFlowMessage = input.next();
-                    System.out.println("Ingrese el codigo del chatbot al que se vincula el flow y luego presione ENTER:");
-                    var inputFlowChatbotCode = input.nextInt();
-                    System.out.println("Ingrese las opciones del flow y luego presione ENTER:");
-                    var inputFlowOptions = input.next();
-                    break;
-                case 3:
-                    System.out.println("Ha seleccionado la opcion 3: Crear un Chatbot");
-                    System.out.println("Ingrese el codigo del chatbot y luego presione ENTER:");
-                    var inputChatbotCode = input.nextInt();
-                    System.out.println("Ingrese el nombre del chatbot y luego presione ENTER:");
-                    var inputChatbotName = input.next();
-                    System.out.println("Ingrese el mensaje de bienvenida del chatbot y luego presione ENTER:");
-                    var inputChatbotWelcomeMessage = input.next();
-                    System.out.println("Ingrese el codigo del flow inicial del chatbot y luego presione ENTER:");
-                    var inputChatbotInitialFlowCode = input.nextInt();
-                    System.out.println("Ingrese los flows del chatbot y luego presione ENTER:");
-                    var inputChatbotFlows = input.next();
-                    break;
-                case 4:
-                    System.out.println("Ha seleccionado la opcion 4: Crear un Sistema");
-                    System.out.println("Ingrese el nombre del sistema y luego presione ENTER:");
-                    var inputSystemName = input.next();
-                    System.out.println("Ingrese el codigo del chatbot inicial del sistema y luego presione ENTER:");
-                    var inputSystemInitialChatbotCode = input.nextInt();
-                    System.out.println("Ingrese los chatbots del sistema y luego presione ENTER:");
-                    var inputSystemChatbots = input.next();
-                    System.out.println("Ingrese los usuarios registrados del sistema y luego presione ENTER:");
-                    var inputSystemRegisteredUsers = input.next();
-                    System.out.println("Ingrese el usuario logeado del sistema y luego presione ENTER:");
-                    var inputSystemLoggedUser = input.next();
-                    System.out.println("Ingrese el historial de mensajes del sistema y luego presione ENTER:");
-                    var inputSystemChatHistory = input.next();
-                    break;
-                case 5:
-                    exit(0);
-                default:
-                    System.out.println("Ingrese opcion correcta");
-            }
+        switch (opcion) {
+            case 1:
+                // Proceso de login
+                System.out.println("### Sistema de Chatbots - Login ###");
+                System.out.println("INTRODUZCA NOMBRE DE USUARIO:");
+                String nombreUsuario = scanner.next();
+                // Aquí asumimos que se verifica si el usuario es administrador o normal
+                mostrarMenuPrincipal(nombreUsuario, false); // false para usuario normal
+                break;
+            case 2:
+                // Proceso de registro
+                System.out.println("### Sistema de Chatbots - Registro ###");
+                System.out.println("1. Registrar usuario normal");
+                System.out.println("2. Registrar usuario administrador");
+                System.out.println("INTRODUZCA SU OPCIÓN:");
+                int opcionRegistro = scanner.nextInt();
+
+                switch (opcionRegistro) {
+                    case 1:
+                        System.out.println("### Sistema de Chatbots - Registro Usuario Normal ###");
+                        System.out.println("INTRODUZCA NOMBRE DE USUARIO:");
+                        String nombreUsuarioNormal = scanner.next();
+                        mostrarMenuPrincipal(nombreUsuarioNormal, false); // false para usuario normal
+                        break;
+                    case 2:
+                        System.out.println("### Sistema de Chatbots - Registro Usuario Administrador ###");
+                        System.out.println("INTRODUZCA NOMBRE DEL USUARIO ADMINISTRADOR:");
+                        String nombreUsuarioAdministrador = scanner.next();
+                        mostrarMenuPrincipal(nombreUsuarioAdministrador, true); // true para usuario administrador
+                        break;
+                }
+                break;
         }
     }
 
-    public static int showMenu() {
+    private static void mostrarMenuPrincipal(String nombreUsuario, boolean esAdministrador) {
+        if (esAdministrador) {
+            mostrarMenuAdministrador(nombreUsuario);
+        } else {
+            mostrarMenuUsuarioNormal(nombreUsuario);
+        }
+    }
 
-        var selectedOption = 0;
-        Scanner keyboardInput = new Scanner(System.in);
-        System.out.println("Main Menu:");
-        System.out.println("--------------");
-        System.out.println("1.Crear un Option");
-        System.out.println("2.Crear un Flow");
-        System.out.println("3.Crear un Chatbot");
-        System.out.println("4.Crear un Sistema");
-        System.out.println("5.Salir");
-        System.out.println("--------------");
-        System.out.println("Ingrese su opcion (1,2 3, 4 o 5) y luego aprete tecla ENTER:");
-        selectedOption = keyboardInput.nextInt();
+    private static void mostrarMenuAdministrador(String nombreUsuario) {
+        System.out.println("### Sistema de Chatbots - Usuario Administrador ###");
+        System.out.println("Bienvenido " + nombreUsuario + " usted es administrador.");
+        System.out.println("1. Crear un Chatbot");
+        System.out.println("2. Modificar un Chatbot");
+        System.out.println("3. Ejecutar un Chatbot");
+        System.out.println("4. Visualizar todos los chatbots existentes en el sistema");
+        System.out.println("5. Visualizar todos los chatbots con sus flujos y opciones creadas");
+        System.out.println("6. Ejecutar una simulación del sistema de chatbot");
+        System.out.println("7. Salir");
+        System.out.println("INTRODUZCA SU OPCIÓN:");
+        Scanner scanner = new Scanner(System.in);
+        int opcion = scanner.nextInt();
+        switch (opcion) {
+            case 1:
+                System.out.println("### Sistema de Chatbots - Crear Option ###");
+                System.out.print("INTRODUZCA CODE DEL OPTION: ");
+                int code = scanner.nextInt();
+                scanner.nextLine();
 
-        return selectedOption;
+                System.out.print("INTRODUZCA MESSAGE DEL OPTION: ");
+                String mensaje = scanner.nextLine();
+
+                System.out.print("INTRODUZCA CHATBOT CODE LINK DEL OPTION: ");
+                int chatbotCodeLink = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.print("INTRODUZCA INITIAL FLOW CODE LINK DEL OPTION: ");
+                int initialFlowCodeLink = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.print("INTRODUZCA KEYWORDS DEL OPTION (separadas por espacio): ");
+                String  keywords = scanner.nextLine();
+                Option_21133732_PachecoParra option = new Option_21133732_PachecoParra(code, mensaje, chatbotCodeLink, initialFlowCodeLink, List.of(keywords));
+                System.out.println(option);
+                System.out.println("Se ha creado el Option exitosamente.");
+                break;
+            case 2:
+                // Modificar un Chatbot
+                System.out.println("### Sistema de Chatbots - Modificar Option ###");
+                System.out.print("INTRODUZCA CODE DEL OPTION: ");
+                int codeOption = scanner.nextInt();
+                scanner.nextLine();
+                System.out.print("INTRODUZCA MESSAGE DEL OPTION: ");
+                String mensajeOption = scanner.nextLine();
+                System.out.print("INTRODUZCA CHATBOT CODE LINK DEL OPTION: ");
+                int chatbotCodeLinkOption = scanner.nextInt();
+                scanner.nextLine();
+                System.out.print("INTRODUZCA INITIAL FLOW CODE LINK DEL OPTION: ");
+                int initialFlowCodeLinkOption = scanner.nextInt();
+                scanner.nextLine();
+                System.out.print("INTRODUZCA KEYWORDS DEL OPTION (separadas por espacio): ");
+                String  keywordsOption = scanner.nextLine();
+                Option_21133732_PachecoParra optionModificar = new Option_21133732_PachecoParra(codeOption, mensajeOption, chatbotCodeLinkOption, initialFlowCodeLinkOption, List.of(keywordsOption));
+                System.out.println(optionModificar);
+                System.out.println("Se ha modificado el Option exitosamente.");
+                break;
+            case 3:
+                // Ejecutar un Chatbot
+                break;
+            case 4:
+                // Visualizar todos los chatbots existentes en el sistema
+
+                break;
+            case 5:
+                // Visualizar todos los chatbots con sus flujos y opciones creadas
+                break;
+            case 6:
+                // Ejecutar una simulación del sistema de chatbot
+                break;
+            case 7:
+                // Salir
+                break;
+        }
+    }
+
+    private static void mostrarMenuUsuarioNormal(String nombreUsuario) {
+        System.out.println("### Sistema de Chatbots - Usuario Normal ###");
+        System.out.println("Bienvenido " + nombreUsuario + " usted es usuario normal.");
+        System.out.println("1. Visualizar todos los chatbots existentes en el sistema");
+        System.out.println("2. Visualizr todos los chatbots con sus flujos y opciones creadas");
+        System.out.println("3. Ejecutar una simulación del sistema de chatbot");
+        System.out.println("4. Salir");
+        System.out.println("INTRODUZCA SU OPCIÓN:");
+        Scanner scanner = new Scanner(System.in);
+        int opcion = scanner.nextInt();
+
+        switch (opcion) {
+            case 1:
+                // Visualizar todos los chatbots existentes en el sistema
+                break;
+            case 2:
+                // Visualizar todos los chatbots con sus flujos y opciones creadas
+                break;
+            case 3:
+                // Ejecutar una simulación del sistema de chatbot
+                break;
+            case 4:
+                // Salir
+                break;
+        }
     }
 
 }
+
+

@@ -2,11 +2,11 @@ package org.example;
 
 public class User_21133732_PachecoParra {
     String username;
-    boolean isAdmin;
+    boolean esAdministrador;
 
-    public User_21133732_PachecoParra(String username, boolean isAdmin) {
+    public User_21133732_PachecoParra(String username, boolean esAdministrador) {
         this.username = username;
-        this.isAdmin = isAdmin;
+        this.esAdministrador = esAdministrador;
     }
 
     public String getUsername() {
@@ -17,19 +17,19 @@ public class User_21133732_PachecoParra {
         this.username = username;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    public boolean esAdministrador() {
+        return esAdministrador;
     }
 
     public void setAdmin(boolean admin) {
-        isAdmin = admin;
+        esAdministrador = admin;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
-                ", isAdmin=" + isAdmin +
+                ", esAdministrador=" + esAdministrador +
                 '}';
     }
 }
