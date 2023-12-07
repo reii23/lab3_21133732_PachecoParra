@@ -192,7 +192,6 @@ public class Menu_21133732_PachecoParra {
 
         System.out.println("INTRODUZCA EL INITIALFLOWCODELINK DEL OPTION:");
         int initialFlowCodeLinkOption = scanner.nextInt();
-        scanner.nextLine();
 
         System.out.print("INTRODUZCA KEYWORDS DEL OPTION (separadas por espacio): ");
         String keywordsInput = scanner.nextLine();
@@ -276,7 +275,6 @@ public class Menu_21133732_PachecoParra {
         scanner.nextLine();
         System.out.println("INTRODUZCA EL NAMEMSG DEL FLOW:");
         String nameMsgFlowAgregar = scanner.nextLine();
-        scanner.nextLine();
         System.out.println("INTRODUZCA EL CODE DEL OPTION:");
         int codeOptionAgregar = scanner.nextInt();
         scanner.nextLine();
@@ -421,6 +419,7 @@ public class Menu_21133732_PachecoParra {
 // TO DO:
 // 1- Para flowAddOption, chatbotAddFlow, systemAddChatbot crear funciones que busquen la option, el flow o el chatbot y se realice un append a la lista que deba almacenarlos
 // 2- Implementar verificacion de tipos y errores en los input del usuario entregando sout de error y volviendo a pedir el input.
+// 3- Crear la opciones del menuUsuarioNormal
 
 
 
