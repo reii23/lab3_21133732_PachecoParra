@@ -2,6 +2,8 @@ package org.example;
 
 import java.util.List;
 
+// Sistema_21133732_PachecoParra.java
+
 public class Sistema_21133732_PachecoParra implements InterfaceSistema_21133732_PachecoParra {
 
     // El sistema además de contener los distintos chatbots, también contiene el chatHistory de cada usuario que interactúa con el sistema. Sobre el chatHistory, éste corresponde al registro completo del diálogo entre usuario y cada uno de los chatbots con los que interactúa.

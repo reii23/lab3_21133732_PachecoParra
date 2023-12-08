@@ -15,14 +15,18 @@ package org.example;
 
 import java.util.*;
 
+// Menu_21133732_PachecoParra.java
+
 public class Menu_21133732_PachecoParra {
+    private static Sistema_21133732_PachecoParra sistema;
     private static Map<Integer, Option_21133732_PachecoParra> opciones = new HashMap<>();
     private static Map<Integer, Flow_21133732_PachecoParra> flujos = new HashMap<>();
-
+    private static Map<Integer, Chatbot_21133732_PachecoParra> chatbots = new HashMap<>();
     private static Scanner scanner = new Scanner(System.in);
     private static Map<String, Boolean> usuariosRegistrados = new HashMap<>();
 
-    public static void main(String[] args) {
+    public static void main(Sistema_21133732_PachecoParra sistemaEntrante) {
+        sistema = sistemaEntrante;
         while (true) {
             System.out.println("### Sistema de Chatbots - Inicio ###");
             System.out.println("1. Login de Usuario");
@@ -209,7 +213,6 @@ public class Menu_21133732_PachecoParra {
         int codeOptionModificar = scanner.nextInt();
         scanner.nextLine();
 
-        // Verificar si el código de opción existe
         if (!opciones.containsKey(codeOptionModificar)) {
             System.out.println("Error: El código de opción no existe.");
             return;
@@ -261,9 +264,14 @@ public class Menu_21133732_PachecoParra {
         System.out.println("INTRODUZCA EL ID DEL FLOW:");
         int idFlow = scanner.nextInt();
         scanner.nextLine();
+        if (flujos.containsKey(idFlow)) {
+            System.out.println("Error: Ya existe un flujo con ese ID.");
+            return;
+        }
         System.out.println("INTRODUZCA EL NAMEMSG DEL FLOW:");
         String nameMsgFlow = scanner.nextLine();
-        Flow_21133732_PachecoParra flowCrear = new Flow_21133732_PachecoParra(idFlow, nameMsgFlow, List.of());
+        Flow_21133732_PachecoParra flowCrear = new Flow_21133732_PachecoParra(idFlow, nameMsgFlow, new ArrayList<>());
+        flujos.put(idFlow, flowCrear);
         System.out.println(flowCrear);
         System.out.println("Se ha creado el Flow exitosamente.");
     }
@@ -271,27 +279,25 @@ public class Menu_21133732_PachecoParra {
     private static void modificarFlow() {
         System.out.println("### Sistema de Chatbots - Menú Flow - Agregar opción a flujo ###");
         System.out.println("INTRODUZCA EL ID DEL FLOW:");
-        int idFlowAgregar = scanner.nextInt();
+        int idFlow = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("INTRODUZCA EL NAMEMSG DEL FLOW:");
-        String nameMsgFlowAgregar = scanner.nextLine();
+        if (!flujos.containsKey(idFlow)) {
+            System.out.println("Error: El flujo con el ID especificado no existe.");
+            return;
+        }
+        Flow_21133732_PachecoParra flujoExistente = flujos.get(idFlow);
         System.out.println("INTRODUZCA EL CODE DEL OPTION:");
-        int codeOptionAgregar = scanner.nextInt();
+        int codeOption = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("INTRODUZCA EL MESSAGE DEL OPTION:");
-        String messageOptionAgregar = scanner.nextLine();
-        System.out.println("INTRODUZCA EL CHATBOTCODELINK DEL OPTION:");
-        int chatbotCodeLinkOptionAgregar = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("INTRODUZCA EL INITIALFLOWCODELINK DEL OPTION:");
-        int initialFlowCodeLinkOptionAgregar = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("INTRODUZCA KEYWORDS DEL OPTION (separadas por espacio): ");
-        String keywordsOptionAgregar = scanner.nextLine();
-        Option_21133732_PachecoParra optionAgregar = new Option_21133732_PachecoParra(codeOptionAgregar, messageOptionAgregar, chatbotCodeLinkOptionAgregar, initialFlowCodeLinkOptionAgregar, List.of(keywordsOptionAgregar));
-        Flow_21133732_PachecoParra flowAgregar = new Flow_21133732_PachecoParra(idFlowAgregar, nameMsgFlowAgregar, List.of(optionAgregar));
-        System.out.println(flowAgregar);
+        if (!opciones.containsKey(codeOption)) {
+            System.out.println("Error: La opción con el código especificado no existe.");
+            return;
+        }
+        Option_21133732_PachecoParra opcionExistente = opciones.get(codeOption);
+        flujoExistente.flowAddOption(opcionExistente);
+
         System.out.println("Se ha agregado el Option al Flow exitosamente.");
+        System.out.println(flujoExistente);
     }
 
     private static void menuChatbot() {
@@ -316,6 +322,12 @@ public class Menu_21133732_PachecoParra {
         System.out.println("INTRODUZCA EL CHATBOTID DEL CHATBOT:");
         int chatbotIDChatbot = scanner.nextInt();
         scanner.nextLine();
+
+        if (chatbots.containsKey(chatbotIDChatbot)) {
+            System.out.println("Error: Ya existe un chatbot con ese ID.");
+            return;
+        }
+
         System.out.println("INTRODUZCA EL NAME DEL CHATBOT:");
         String nameChatbot = scanner.nextLine();
         System.out.println("INTRODUZCA EL WELCOMEMESSAGE DEL CHATBOT:");
@@ -323,62 +335,66 @@ public class Menu_21133732_PachecoParra {
         System.out.println("INTRODUZCA EL STARTFLOWID DEL CHATBOT:");
         int startFlowIdChatbot = scanner.nextInt();
         scanner.nextLine();
-        // la lista de flows se crea vacía
-        Chatbot_21133732_PachecoParra chatbotCrear = new Chatbot_21133732_PachecoParra(chatbotIDChatbot, nameChatbot, welcomeMessageChatbot, startFlowIdChatbot, List.of());
+        Chatbot_21133732_PachecoParra chatbotCrear = new Chatbot_21133732_PachecoParra(chatbotIDChatbot, nameChatbot, welcomeMessageChatbot, startFlowIdChatbot, new ArrayList<>());
+        chatbots.put(chatbotIDChatbot, chatbotCrear);
         System.out.println(chatbotCrear);
         System.out.println("Se ha creado el Chatbot exitosamente.");
     }
 
     private static void modificarChatbot(){
-        // chatbotAddFlow
         System.out.println("### Sistema de Chatbots - Menú Chatbot - Agregar flujo a chatbot ###");
-        System.out.println("INTRODUZCA EL CHATBOTID DEL CHATBOT:");
-        int chatbotIDChatbotAgregar = scanner.nextInt();
+        System.out.println("INTRODUZCA EL ID DEL CHATBOT:");
+        int idChatbot = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("INTRODUZCA EL NAME DEL CHATBOT:");
-        String nameChatbotAgregar = scanner.nextLine();
-        System.out.println("INTRODUZCA EL WELCOMEMESSAGE DEL CHATBOT:");
-        String welcomeMessageChatbotAgregar = scanner.nextLine();
-        System.out.println("INTRODUZCA EL STARTFLOWID DEL CHATBOT:");
-        int startFlowIdChatbotAgregar = scanner.nextInt();
-        scanner.nextLine();
+        if (!chatbots.containsKey(idChatbot)) {
+            System.out.println("Error: El chatbot con el ID especificado no existe.");
+            return;
+        }
+        Chatbot_21133732_PachecoParra chatbotExistente = chatbots.get(idChatbot);
         System.out.println("INTRODUZCA EL ID DEL FLOW:");
-        int idFlowAgregar = scanner.nextInt();
+        int idFlow = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("INTRODUZCA EL NAMEMSG DEL FLOW:");
-        String nameMsgFlowAgregar = scanner.nextLine();
-        scanner.nextLine();
-        System.out.println("INTRODUZCA EL CODE DEL OPTION:");
-        int codeOptionAgregar = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("INTRODUZCA EL MESSAGE DEL OPTION:");
-        String messageOptionAgregar = scanner.nextLine();
-        scanner.nextLine();
-        System.out.println("INTRODUZCA EL CHATBOTCODELINK DEL OPTION:");
-        int chatbotCodeLinkOptionAgregar = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("INTRODUZCA EL INITIALFLOWCODELINK DEL OPTION:");
-        int initialFlowCodeLinkOptionAgregar = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("INTRODUZCA KEYWORDS DEL OPTION (separadas por espacio): ");
-        String keywordsOptionAgregar = scanner.nextLine();
-        Option_21133732_PachecoParra optionAgregar = new Option_21133732_PachecoParra(codeOptionAgregar, messageOptionAgregar, chatbotCodeLinkOptionAgregar, initialFlowCodeLinkOptionAgregar, List.of(keywordsOptionAgregar));
-        Flow_21133732_PachecoParra flowAgregar = new Flow_21133732_PachecoParra(idFlowAgregar, nameMsgFlowAgregar, List.of(optionAgregar));
-        Chatbot_21133732_PachecoParra chatbotAgregar = new Chatbot_21133732_PachecoParra(chatbotIDChatbotAgregar, nameChatbotAgregar, welcomeMessageChatbotAgregar, startFlowIdChatbotAgregar, List.of(flowAgregar));
-        System.out.println(chatbotAgregar);
+        if (!flujos.containsKey(idFlow)) {
+            System.out.println("Error: El flujo con el ID especificado no existe.");
+            return;
+        }
+        Flow_21133732_PachecoParra flujoExistente = flujos.get(idFlow);
+        chatbotExistente.chatbotAddFlow(flujoExistente);
+        System.out.println(chatbotExistente);
         System.out.println("Se ha agregado el Flow al Chatbot exitosamente.");
     }
 
     private static void visualizarChatbots() {
-        // visualizar todos los chatbots existentes en el sistema
-       // tener una lista de chatbots creados y mostrarlos
         System.out.println("### Sistema de Chatbots - Visualizar Chatbots ###");
+        if (chatbots.isEmpty()) {
+            System.out.println("No hay chatbots registrados en el sistema.");
+            return;
+        }
+
+        for (Chatbot_21133732_PachecoParra chatbot : chatbots.values()) {
+            System.out.println(chatbot); // Asumiendo que Chatbot tiene un método toString adecuado
+        }
     }
 
     private static void visualizarChatbotsConFlujos() {
-        // visualizar todos los chatbots con sus flujos y opciones
-        System.out.println("### Sistema de Chatbots - Visualizar Chatbots con Flujos ###");
+        if (sistema == null || sistema.getChatbots().isEmpty()) {
+            System.out.println("No hay chatbots registrados en el sistema.");
+            return;
+        }
+
+        for (Chatbot_21133732_PachecoParra chatbot : sistema.getChatbots()) {
+            System.out.println("Chatbot: " + chatbot.getName()); // Asumiendo que hay un método getNombre
+            // Mostrar detalles de flujos y opciones
+            for (Flow_21133732_PachecoParra flujo : chatbot.getFlows()) {
+                System.out.println("  Flujo: " + flujo.getNameMsg()); // Asumiendo que hay un método getNombre para flujos
+                for (Option_21133732_PachecoParra opcion : flujo.getOptions()) {
+                    System.out.println("    Opción: " + opcion.getMessage()); // Asumiendo que hay un método getDescripcion para opciones
+                }
+            }
+        }
     }
+
+
 
     private static void ejecutarSimulacion() {
         // ejecutar una simulación del sistema de chatbot
@@ -417,9 +433,9 @@ public class Menu_21133732_PachecoParra {
 }
 
 // TO DO:
-// 1- Para flowAddOption, chatbotAddFlow, systemAddChatbot crear funciones que busquen la option, el flow o el chatbot y se realice un append a la lista que deba almacenarlos
+// LISTO 1- Para flowAddOption, chatbotAddFlow, systemAddChatbot crear funciones que busquen la option, el flow o el chatbot y se realice un append a la lista que deba almacenarlos
 // 2- Implementar verificacion de tipos y errores en los input del usuario entregando sout de error y volviendo a pedir el input.
-// 3- Crear la opciones del menuUsuarioNormal
+// LISTO PARCIALMENTE 3- Crear la opciones del menuUsuarioNormal
 
 
 

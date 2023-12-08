@@ -64,6 +64,13 @@ public class Main_21133732_PachecoParra {
         usuarios.add(user2);
         usuarios.add(user3);
 
+        CargaDatos_21133732_PachecoParra.addChatbot(chatbot0);
+        CargaDatos_21133732_PachecoParra.addChatbot(chatbot1);
+        CargaDatos_21133732_PachecoParra.addChatbot(chatbot2);
+        CargaDatos_21133732_PachecoParra.addUser(user1);
+        CargaDatos_21133732_PachecoParra.addUser(user2);
+        CargaDatos_21133732_PachecoParra.addUser(user3);
+
         // Creación del Sistema
         Sistema_21133732_PachecoParra sistema = new Sistema_21133732_PachecoParra("Chatbots Paradigmas", 0, new ArrayList<>(List.of(chatbot0, chatbot1, chatbot2)), usuarios, user1, new ArrayList<>());
 
@@ -71,5 +78,7 @@ public class Main_21133732_PachecoParra {
 
         // Mostrar sistema
         System.out.println(sistema);
+        // Llamar al método main de Menu_21133732_PachecoParra
+        Menu_21133732_PachecoParra.main(sistema);
     }
 }
