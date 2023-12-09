@@ -16,7 +16,6 @@ public class Main_21133732_PachecoParra {
         flowsChatbot0.add(flowChatbot0);
         Chatbot_21133732_PachecoParra chatbot0 = new Chatbot_21133732_PachecoParra(0, "Inicial", "Bienvenido\n¿Qué te gustaría hacer?", 1, flowsChatbot0);
 
-        // Chatbot 1
         List<Option_21133732_PachecoParra> optionsFlow1Chatbot1 = new ArrayList<>();
         optionsFlow1Chatbot1.add(new Option_21133732_PachecoParra(1, "1) New York, USA", 1, 2, new ArrayList<>(List.of("USA", "Estados Unidos", "New York"))));
         optionsFlow1Chatbot1.add(new Option_21133732_PachecoParra(2, "2) París, Francia", 1, 1, new ArrayList<>(List.of("Paris", "Eiffel"))));
@@ -71,14 +70,10 @@ public class Main_21133732_PachecoParra {
         CargaDatos_21133732_PachecoParra.addUser(user2);
         CargaDatos_21133732_PachecoParra.addUser(user3);
 
-        // Creación del Sistema
         Sistema_21133732_PachecoParra sistema = new Sistema_21133732_PachecoParra("Chatbots Paradigmas", 0, new ArrayList<>(List.of(chatbot0, chatbot1, chatbot2)), usuarios, user1, new ArrayList<>());
 
-        // systemTalk
 
-        // Mostrar sistema
-        System.out.println(sistema);
-        // Llamar al método main de Menu_21133732_PachecoParra
+        Menu_21133732_PachecoParra.sincronizarUsuarios(sistema.getUsersRegistrados());
         Menu_21133732_PachecoParra.main(sistema);
     }
 }

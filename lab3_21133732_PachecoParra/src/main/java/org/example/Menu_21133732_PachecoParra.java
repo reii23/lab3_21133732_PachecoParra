@@ -13,6 +13,7 @@
 
 package org.example;
 
+import java.sql.SQLOutput;
 import java.util.*;
 
 // Menu_21133732_PachecoParra.java
@@ -25,6 +26,7 @@ public class Menu_21133732_PachecoParra {
     private static Scanner scanner = new Scanner(System.in);
     private static Map<String, Boolean> usuariosRegistrados = new HashMap<>();
 
+
     public static void main(Sistema_21133732_PachecoParra sistemaEntrante) {
         sistema = sistemaEntrante;
         while (true) {
@@ -32,7 +34,7 @@ public class Menu_21133732_PachecoParra {
             System.out.println("1. Login de Usuario");
             System.out.println("2. Registro de Usuario");
             System.out.println("3. Salir");
-            System.out.println("INTRODUZCA SU OPCIÓN:");
+            System.out.print("INTRODUZCA SU OPCIÓN:");
             int opcion = scanner.nextInt();
             scanner.nextLine();
 
@@ -55,7 +57,7 @@ public class Menu_21133732_PachecoParra {
 
     private static void procesoLogin() {
         System.out.println("### Sistema de Chatbots - Login ###");
-        System.out.println("INTRODUZCA NOMBRE DE USUARIO:");
+        System.out.print("INTRODUZCA NOMBRE DE USUARIO:");
         String nombreUsuario = scanner.nextLine().toLowerCase();
 
         if (usuariosRegistrados.containsKey(nombreUsuario)) {
@@ -67,7 +69,7 @@ public class Menu_21133732_PachecoParra {
 
     private static void procesoRegistro() {
         System.out.println("### Sistema de Chatbots - Registro ###");
-        System.out.println("INTRODUZCA NOMBRE DE USUARIO:");
+        System.out.print("INTRODUZCA NOMBRE DE USUARIO:");
         String nombreUsuario = scanner.nextLine().toLowerCase();
 
         if (usuariosRegistrados.containsKey(nombreUsuario)) {
@@ -77,7 +79,7 @@ public class Menu_21133732_PachecoParra {
 
         System.out.println("1. Registrar usuario normal");
         System.out.println("2. Registrar usuario administrador");
-        System.out.println("INTRODUZCA SU OPCIÓN:");
+        System.out.print("INTRODUZCA SU OPCIÓN:");
         int opcionRegistro = scanner.nextInt();
         scanner.nextLine();
 
@@ -117,7 +119,7 @@ public class Menu_21133732_PachecoParra {
             System.out.println("5. Visualizar todos los chatbots con sus flujos y opciones creadas");
             System.out.println("6. Ejecutar una simulación del sistema de chatbot");
             System.out.println("7. Salir");
-            System.out.println("INTRODUZCA SU OPCIÓN:");
+            System.out.print("INTRODUZCA SU OPCIÓN:");
 
             int opcion = scanner.nextInt();
             scanner.nextLine();
@@ -157,7 +159,7 @@ public class Menu_21133732_PachecoParra {
             System.out.println("1. Crear opción");
             System.out.println("2. Modificar opción");
             System.out.println("3. Salir al menú anterior");
-            System.out.println("INTRODUZCA SU OPCIÓN:");
+            System.out.print("INTRODUZCA SU OPCIÓN:");
             int opcion = scanner.nextInt();
             scanner.nextLine();
             switch (opcion) {
@@ -178,7 +180,7 @@ public class Menu_21133732_PachecoParra {
 
     private static void crearOpcion() {
         System.out.println("### Sistema de Chatbots - Menú Option - Crear opción ###");
-        System.out.println("INTRODUZCA EL CODE DEL OPTION:");
+        System.out.print("INTRODUZCA EL CODE DEL OPTION:");
         int codeOption = scanner.nextInt();
         scanner.nextLine();
 
@@ -187,14 +189,14 @@ public class Menu_21133732_PachecoParra {
             return;
         }
 
-        System.out.println("INTRODUZCA EL MESSAGE DEL OPTION:");
+        System.out.print("INTRODUZCA EL MESSAGE DEL OPTION:");
         String messageOption = scanner.nextLine();
 
-        System.out.println("INTRODUZCA EL CHATBOTCODELINK DEL OPTION:");
+        System.out.print("INTRODUZCA EL CHATBOTCODELINK DEL OPTION:");
         int chatbotCodeLinkOption = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println("INTRODUZCA EL INITIALFLOWCODELINK DEL OPTION:");
+        System.out.print("INTRODUZCA EL INITIALFLOWCODELINK DEL OPTION:");
         int initialFlowCodeLinkOption = scanner.nextInt();
 
         System.out.print("INTRODUZCA KEYWORDS DEL OPTION (separadas por espacio): ");
@@ -209,7 +211,7 @@ public class Menu_21133732_PachecoParra {
 
     private static void modificarOpcion() {
         System.out.println("### Sistema de Chatbots - Menú Option - Modificar opción ###");
-        System.out.println("INTRODUZCA EL CODE DEL OPTION:");
+        System.out.print("INTRODUZCA EL CODE DEL OPTION:");
         int codeOptionModificar = scanner.nextInt();
         scanner.nextLine();
 
@@ -218,14 +220,14 @@ public class Menu_21133732_PachecoParra {
             return;
         }
 
-        System.out.println("INTRODUZCA EL MESSAGE DEL OPTION:");
+        System.out.print("INTRODUZCA EL MESSAGE DEL OPTION:");
         String messageOptionModificar = scanner.nextLine();
 
-        System.out.println("INTRODUZCA EL CHATBOTCODELINK DEL OPTION:");
+        System.out.print("INTRODUZCA EL CHATBOTCODELINK DEL OPTION:");
         int chatbotCodeLinkOptionModificar = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println("INTRODUZCA EL INITIALFLOWCODELINK DEL OPTION:");
+        System.out.print("INTRODUZCA EL INITIALFLOWCODELINK DEL OPTION:");
         int initialFlowCodeLinkOptionModificar = scanner.nextInt();
         scanner.nextLine();
 
@@ -244,7 +246,7 @@ public class Menu_21133732_PachecoParra {
         System.out.println("1. Crear flujo");
         System.out.println("2. Agregar opción a flujo");
         System.out.println("3. Salir al menú principal");
-        System.out.println("INTRODUZCA SU OPCIÓN:");
+        System.out.print("INTRODUZCA SU OPCIÓN:");
         int opcion = scanner.nextInt();
         scanner.nextLine();
         switch (opcion) {
@@ -261,14 +263,14 @@ public class Menu_21133732_PachecoParra {
     {
         System.out.println("### Sistema de Chatbots - Menú Flow - Crear flujo ###");
         // FLOW = id (Int) X nameMsg (String) X options (lista de 0 o más options)
-        System.out.println("INTRODUZCA EL ID DEL FLOW:");
+        System.out.print("INTRODUZCA EL ID DEL FLOW:");
         int idFlow = scanner.nextInt();
         scanner.nextLine();
         if (flujos.containsKey(idFlow)) {
             System.out.println("Error: Ya existe un flujo con ese ID.");
             return;
         }
-        System.out.println("INTRODUZCA EL NAMEMSG DEL FLOW:");
+        System.out.print("INTRODUZCA EL NAMEMSG DEL FLOW:");
         String nameMsgFlow = scanner.nextLine();
         Flow_21133732_PachecoParra flowCrear = new Flow_21133732_PachecoParra(idFlow, nameMsgFlow, new ArrayList<>());
         flujos.put(idFlow, flowCrear);
@@ -278,7 +280,7 @@ public class Menu_21133732_PachecoParra {
 
     private static void modificarFlow() {
         System.out.println("### Sistema de Chatbots - Menú Flow - Agregar opción a flujo ###");
-        System.out.println("INTRODUZCA EL ID DEL FLOW:");
+        System.out.print("INTRODUZCA EL ID DEL FLOW:");
         int idFlow = scanner.nextInt();
         scanner.nextLine();
         if (!flujos.containsKey(idFlow)) {
@@ -286,7 +288,7 @@ public class Menu_21133732_PachecoParra {
             return;
         }
         Flow_21133732_PachecoParra flujoExistente = flujos.get(idFlow);
-        System.out.println("INTRODUZCA EL CODE DEL OPTION:");
+        System.out.print("INTRODUZCA EL CODE DEL OPTION:");
         int codeOption = scanner.nextInt();
         scanner.nextLine();
         if (!opciones.containsKey(codeOption)) {
@@ -306,7 +308,7 @@ public class Menu_21133732_PachecoParra {
         System.out.println("1. Crear chatbot");
         System.out.println("2. Agregar flujo a chatbot");
         System.out.println("3. Salir al menú principal");
-        System.out.println("INTRODUZCA SU OPCIÓN:");
+        System.out.print("INTRODUZCA SU OPCIÓN:");
         int opcion = scanner.nextInt();
         scanner.nextLine();
         switch (opcion) {
@@ -328,11 +330,11 @@ public class Menu_21133732_PachecoParra {
             return;
         }
 
-        System.out.println("INTRODUZCA EL NAME DEL CHATBOT:");
+        System.out.print("INTRODUZCA EL NAME DEL CHATBOT:");
         String nameChatbot = scanner.nextLine();
-        System.out.println("INTRODUZCA EL WELCOMEMESSAGE DEL CHATBOT:");
+        System.out.print("INTRODUZCA EL WELCOMEMESSAGE DEL CHATBOT:");
         String welcomeMessageChatbot = scanner.nextLine();
-        System.out.println("INTRODUZCA EL STARTFLOWID DEL CHATBOT:");
+        System.out.print("INTRODUZCA EL STARTFLOWID DEL CHATBOT:");
         int startFlowIdChatbot = scanner.nextInt();
         scanner.nextLine();
         Chatbot_21133732_PachecoParra chatbotCrear = new Chatbot_21133732_PachecoParra(chatbotIDChatbot, nameChatbot, welcomeMessageChatbot, startFlowIdChatbot, new ArrayList<>());
@@ -343,7 +345,7 @@ public class Menu_21133732_PachecoParra {
 
     private static void modificarChatbot(){
         System.out.println("### Sistema de Chatbots - Menú Chatbot - Agregar flujo a chatbot ###");
-        System.out.println("INTRODUZCA EL ID DEL CHATBOT:");
+        System.out.print("INTRODUZCA EL ID DEL CHATBOT:");
         int idChatbot = scanner.nextInt();
         scanner.nextLine();
         if (!chatbots.containsKey(idChatbot)) {
@@ -351,7 +353,7 @@ public class Menu_21133732_PachecoParra {
             return;
         }
         Chatbot_21133732_PachecoParra chatbotExistente = chatbots.get(idChatbot);
-        System.out.println("INTRODUZCA EL ID DEL FLOW:");
+        System.out.print("INTRODUZCA EL ID DEL FLOW:");
         int idFlow = scanner.nextInt();
         scanner.nextLine();
         if (!flujos.containsKey(idFlow)) {
@@ -366,13 +368,14 @@ public class Menu_21133732_PachecoParra {
 
     private static void visualizarChatbots() {
         System.out.println("### Sistema de Chatbots - Visualizar Chatbots ###");
-        if (chatbots.isEmpty()) {
+
+        if (sistema == null || sistema.getChatbots().isEmpty()) {
             System.out.println("No hay chatbots registrados en el sistema.");
             return;
         }
 
-        for (Chatbot_21133732_PachecoParra chatbot : chatbots.values()) {
-            System.out.println(chatbot); // Asumiendo que Chatbot tiene un método toString adecuado
+        for (Chatbot_21133732_PachecoParra chatbot : sistema.getChatbots()) {
+            System.out.println(chatbot);
         }
     }
 
@@ -397,8 +400,15 @@ public class Menu_21133732_PachecoParra {
 
 
     private static void ejecutarSimulacion() {
-        // ejecutar una simulación del sistema de chatbot
+        if (sistema.getUserLogeado() == null) {
+            System.out.println("No hay ningún usuario logueado para ejecutar la simulación.");
+            return;
+        }
+
+        System.out.println("### Simulación del Sistema de Chatbots ###");
+        sistema.systemTalk();
     }
+
 
     private static void mostrarMenuUsuarioNormal(String nombreUsuario) {
         System.out.println("### Sistema de Chatbots - Usuario Normal ###");
@@ -407,7 +417,7 @@ public class Menu_21133732_PachecoParra {
         System.out.println("2. Visualizar todos los chatbots con sus flujos y opciones creadas");
         System.out.println("3. Ejecutar una simulación del sistema de chatbot");
         System.out.println("4. Salir");
-        System.out.println("INTRODUZCA SU OPCIÓN:");
+        System.out.print("INTRODUZCA SU OPCIÓN:");
 
         int opcion = scanner.nextInt();
         scanner.nextLine();
@@ -430,12 +440,14 @@ public class Menu_21133732_PachecoParra {
                 break;
         }
     }
+
+    public static void sincronizarUsuarios(List<User_21133732_PachecoParra> usuariosSistema) {
+        for (User_21133732_PachecoParra usuario : usuariosSistema) {
+            usuariosRegistrados.put(usuario.getUsername().toLowerCase(), usuario.esAdministrador());
+        }
+    }
 }
 
-// TO DO:
-// LISTO 1- Para flowAddOption, chatbotAddFlow, systemAddChatbot crear funciones que busquen la option, el flow o el chatbot y se realice un append a la lista que deba almacenarlos
-// 2- Implementar verificacion de tipos y errores en los input del usuario entregando sout de error y volviendo a pedir el input.
-// LISTO PARCIALMENTE 3- Crear la opciones del menuUsuarioNormal
 
 
 

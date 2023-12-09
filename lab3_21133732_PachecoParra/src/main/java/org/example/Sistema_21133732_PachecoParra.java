@@ -1,22 +1,19 @@
 package org.example;
 
 import java.util.List;
+import java.util.Scanner;
+
 
 // Sistema_21133732_PachecoParra.java
 
 public class Sistema_21133732_PachecoParra implements InterfaceSistema_21133732_PachecoParra {
-
-    // El sistema además de contener los distintos chatbots, también contiene el chatHistory de cada usuario que interactúa con el sistema. Sobre el chatHistory, éste corresponde al registro completo del diálogo entre usuario y cada uno de los chatbots con los que interactúa.
-    //El historial se mantiene para cada usuario y debe tener el String formateado de cada mensaje del usuario y chatbot (para luego ser visualizado en la consola/terminal a través del uso del menú), fecha, hora y emisor (usuario o sistema).
-
-    // name (string) X InitialChatbotCodeLink (Int) X chatbots (Lista de 0 o más chatbots) X usersRegistrados (Lista de 0 o más usuarios registrados) x userLogeado (Usuario logeado en el sistema) X chatHistory (Lista de 0 o más mensajes)
-
     private String nameSystem;
     private int initialChatbotCodeLink;
     private List<Chatbot_21133732_PachecoParra> chatbots;
     private List<User_21133732_PachecoParra> usersRegistrados;
     private User_21133732_PachecoParra userLogeado;
     private List<String> chatHistory;
+    private static Scanner scanner = new Scanner(System.in);
 
     // RFN7: TDA Sistema - constructor - system
     public Sistema_21133732_PachecoParra(String nameSystem, int initialChatbotCodeLink, List<Chatbot_21133732_PachecoParra> chatbots, List<User_21133732_PachecoParra> usersRegistrados, User_21133732_PachecoParra userLogeado, List<String> chatHistory) {
@@ -87,17 +84,79 @@ public class Sistema_21133732_PachecoParra implements InterfaceSistema_21133732_
 
 
     // RFN12  system-talk. Método que permite interactuar con un chatbot.
-    // Requisitos de implementación: Solo se puede conversar si se ha iniciado una sesión con un usuario previamente registrado.
-    // Parámetros de entrada: message (string)
-    //            ;message puede ser la opción o palabra clave que el usuario ingresa para interactuar con el chatbot.
-
-    public void systemTalk (String message) {
-        // si el usuario no está logeado, no se puede interactuar con el chatbot
+    public void systemTalk() {
         if (this.userLogeado == null) {
-            System.out.println("No se puede interactuar con el chatbot porque no hay un usuario logeado");
+            System.out.println("Por favor, inicie sesión para usar el chatbot.");
             return;
         }
+
+        Chatbot_21133732_PachecoParra currentChatbot = this.chatbots.stream()
+                .filter(chatbot -> chatbot.getChatbotID() == this.initialChatbotCodeLink)
+                .findFirst()
+                .orElse(null);
+
+        if (currentChatbot == null) {
+            System.out.println("No se encontró el chatbot inicial.");
+            return;
+        }
+
+        Flow_21133732_PachecoParra currentFlow = currentChatbot.getFlows().stream()
+                .filter(flujo -> flujo.getId() == currentChatbot.getStartFlowId())
+                .findFirst()
+                .orElse(null);
+
+        if (currentFlow == null) {
+            System.out.println("Flujo inicial no encontrado en el chatbot.");
+            return;
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println(currentFlow.getNameMsg());
+            for (Option_21133732_PachecoParra option : currentFlow.getOptions()) {
+                System.out.println(option.getCode() + ") " + option.getMessage());
+            }
+
+            System.out.print("Ingrese su elección: ");
+            String userChoice = scanner.nextLine();
+
+            if ("salir".equalsIgnoreCase(userChoice)) {
+                System.out.println("Saliendo de la conversación...");
+                break;
+            }
+
+            Option_21133732_PachecoParra chosenOption = currentFlow.getOptions().stream()
+                    .filter(option -> String.valueOf(option.getCode()).equals(userChoice))
+                    .findFirst()
+                    .orElse(null);
+
+            if (chosenOption == null) {
+                System.out.println("Opción no válida, intente nuevamente.");
+                continue;
+            }
+
+            int nextFlowId = chosenOption.getInitialFlowCodeLink();
+            if (nextFlowId != currentFlow.getId()) {
+                Flow_21133732_PachecoParra nextFlow = currentChatbot.getFlows().stream()
+                        .filter(flujo -> flujo.getId() == nextFlowId)
+                        .findFirst()
+                        .orElse(null);
+
+                if (nextFlow != null) {
+                    currentFlow = nextFlow;
+                } else {
+                    System.out.println("Conversación finalizada o flujo no encontrado para la opción seleccionada.");
+                    break;
+                }
+            } else {
+                System.out.println("No hay cambio en el flujo, intente otra opción.");
+            }
+        }
     }
+
+
+
+
 
     @Override
     public String toString() {
