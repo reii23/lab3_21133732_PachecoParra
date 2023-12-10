@@ -26,7 +26,6 @@ public class Menu_21133732_PachecoParra {
     private static Scanner scanner = new Scanner(System.in);
     private static Map<String, Boolean> usuariosRegistrados = new HashMap<>();
 
-
     public static void main(Sistema_21133732_PachecoParra sistemaEntrante) {
         sistema = sistemaEntrante;
         while (true) {
@@ -118,7 +117,8 @@ public class Menu_21133732_PachecoParra {
             System.out.println("4. Visualizar todos los chatbots existentes en el sistema");
             System.out.println("5. Visualizar todos los chatbots con sus flujos y opciones creadas");
             System.out.println("6. Ejecutar una simulación del sistema de chatbot");
-            System.out.println("7. Salir");
+            System.out.println("7. Sintesis del Chatbot");
+            System.out.println("8. Salir");
             System.out.print("INTRODUZCA SU OPCIÓN:");
 
             int opcion = scanner.nextInt();
@@ -144,7 +144,10 @@ public class Menu_21133732_PachecoParra {
                     ejecutarSimulacion();
                     break;
                 case 7:
-                    continuar = false; // Salir del menú
+                    sintesisChatbot();
+                    break;
+                case 8:
+                    continuar = false;
                     break;
                 default:
                     System.out.println("Opción no válida.");
@@ -386,18 +389,15 @@ public class Menu_21133732_PachecoParra {
         }
 
         for (Chatbot_21133732_PachecoParra chatbot : sistema.getChatbots()) {
-            System.out.println("Chatbot: " + chatbot.getName()); // Asumiendo que hay un método getNombre
-            // Mostrar detalles de flujos y opciones
+            System.out.println("Chatbot: " + chatbot.getName());
             for (Flow_21133732_PachecoParra flujo : chatbot.getFlows()) {
-                System.out.println("  Flujo: " + flujo.getNameMsg()); // Asumiendo que hay un método getNombre para flujos
+                System.out.println("  Flujo: " + flujo.getNameMsg());
                 for (Option_21133732_PachecoParra opcion : flujo.getOptions()) {
-                    System.out.println("    Opción: " + opcion.getMessage()); // Asumiendo que hay un método getDescripcion para opciones
+                    System.out.println("    Opción: " + opcion.getMessage());
                 }
             }
         }
     }
-
-
 
     private static void ejecutarSimulacion() {
         if (sistema.getUserLogeado() == null) {
@@ -409,14 +409,19 @@ public class Menu_21133732_PachecoParra {
         sistema.systemTalk();
     }
 
+    // TO DO: Corregir el menuUsuarioNormal debido a que luego de cada interacción, se manda al menú de inicio. Debe tener el mismo desplazamiento entre los menus que el usuario administrador.
 
-    private static void mostrarMenuUsuarioNormal(String nombreUsuario) {
+
+    private static void mostrarMenuUsuarioNormal(String nombreUsuario){
+        boolean continuar = true;
+        while (continuar) {
         System.out.println("### Sistema de Chatbots - Usuario Normal ###");
         System.out.println("Bienvenido " + nombreUsuario + " usted es un usuario normal.");
         System.out.println("1. Visualizar todos los chatbots existentes en el sistema");
         System.out.println("2. Visualizar todos los chatbots con sus flujos y opciones creadas");
         System.out.println("3. Ejecutar una simulación del sistema de chatbot");
-        System.out.println("4. Salir");
+        System.out.println("4. Sintesis del Chatbot");
+        System.out.println("5. Salir");
         System.out.print("INTRODUZCA SU OPCIÓN:");
 
         int opcion = scanner.nextInt();
@@ -433,12 +438,27 @@ public class Menu_21133732_PachecoParra {
                 ejecutarSimulacion();
                 break;
             case 4:
-                // Salir
+                sintesisChatbot();
+            case 5:
+                continuar = false;
                 break;
             default:
                 System.out.println("Opción no válida.");
                 break;
+           }
         }
+    }
+
+    private static void sintesisChatbot() {
+        if (sistema.getUserLogeado() == null) {
+            System.out.println("No hay ningún usuario logueado para obtener la sintesis de Chatbots");
+            return;
+        }
+
+        System.out.println("### Sintesis del Chatbot ###");
+        // agregar usuario logeado del sistema
+        System.out.println("Hola " + sistema.getUserLogeado().getUsername() + " bienvenido al sistema de síntesis");
+        sistema.systemSynthesis();
     }
 
     public static void sincronizarUsuarios(List<User_21133732_PachecoParra> usuariosSistema) {

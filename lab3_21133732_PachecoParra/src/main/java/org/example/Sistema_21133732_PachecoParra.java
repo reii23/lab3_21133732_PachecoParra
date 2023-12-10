@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,7 +13,8 @@ public class Sistema_21133732_PachecoParra implements InterfaceSistema_21133732_
     private List<Chatbot_21133732_PachecoParra> chatbots;
     private List<User_21133732_PachecoParra> usersRegistrados;
     private User_21133732_PachecoParra userLogeado;
-    private List<String> chatHistory;
+    private List<String> chatHistory = new ArrayList<>();
+
     private static Scanner scanner = new Scanner(System.in);
 
     // RFN7: TDA Sistema - constructor - system
@@ -121,6 +123,7 @@ public class Sistema_21133732_PachecoParra implements InterfaceSistema_21133732_
             String userChoice = scanner.nextLine();
 
             if ("salir".equalsIgnoreCase(userChoice)) {
+                chatHistory.add("Usuario " + this.userLogeado.getUsername() + " salió del chat.");
                 System.out.println("Saliendo de la conversación...");
                 break;
             }
@@ -134,6 +137,9 @@ public class Sistema_21133732_PachecoParra implements InterfaceSistema_21133732_
                 System.out.println("Opción no válida, intente nuevamente.");
                 continue;
             }
+
+            // Añadir la elección del usuario al historial de chat
+            chatHistory.add("Usuario " + this.userLogeado.getUsername() + " seleccionó la opción: " + chosenOption.getMessage());
 
             int nextFlowId = chosenOption.getInitialFlowCodeLink();
             if (nextFlowId != currentFlow.getId()) {
@@ -149,14 +155,29 @@ public class Sistema_21133732_PachecoParra implements InterfaceSistema_21133732_
                     break;
                 }
             } else {
-                System.out.println("No hay cambio en el flujo, intente otra opción.");
+                System.out.println("Continuando en el mismo flujo.");
             }
         }
     }
 
 
+    // (1.5 pto) system-synthesis. Método que ofrece una síntesis del chatbot para un usuario particular  a partir de chatHistory contenido dentro del sistema
+    //Prerrequisitos para evaluación (req. funcionales)
+    //12
+    //Dominio
+    //usuario (String)
 
+    public void systemSynthesis() {
+        if (this.userLogeado == null) {
+            System.out.println("Por favor, inicie sesión para usar el chatbot.");
+            return;
+        }
 
+        System.out.println("Síntesis del chatbot para el usuario " + this.userLogeado.getUsername() + ":");
+        for (String message : this.chatHistory) {
+            System.out.println(message);
+        }
+    }
 
     @Override
     public String toString() {
