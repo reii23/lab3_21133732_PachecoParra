@@ -7,7 +7,6 @@ import java.util.Map;
 
 
 public class CargaDatos_21133732_PachecoParra {
-
     private static final Map<Integer, Option_21133732_PachecoParra> opciones = new HashMap<>();
     private static final Map<Integer, Flow_21133732_PachecoParra> flujos = new HashMap<>();
     private static final Map<Integer, Chatbot_21133732_PachecoParra> chatbots = new HashMap<>();

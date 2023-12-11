@@ -1,99 +1,98 @@
 package org.example;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Flow;
+
+/**
+ * Clase que representa el main del programa
+ * Proporciona un método main que inicializa el sistema y lo ejecuta.
+ * Crea instancias de los TDA Option, Flow, Chatbot, User y Sistema.
+ * Carga datos en el sistema.
+ * Sincroniza los usuarios registrados con el sistema.
+ * Ejecuta el menú principal.
+ */
 
 public class Main_21133732_PachecoParra {
     public static void main(String[] args) {
-
-        // CARGA DE DATOS
-        // Chatbot 0
-        List<Option_21133732_PachecoParra> optionsChatbot0 = new ArrayList<>();
-        optionsChatbot0.add(new Option_21133732_PachecoParra(1, "1) Viajar", 0, 2, new ArrayList<>(List.of("viajar", "turistear", "conocer"))));
-        optionsChatbot0.add(new Option_21133732_PachecoParra(2, "2) Estudiar", 0, 3, new ArrayList<>(List.of("estudiar", "aprender", "perfeccionarme"))));
-        Flow_21133732_PachecoParra flowChatbot0 = new Flow_21133732_PachecoParra(1, "Flujo Principal Chatbot 0\nBienvenido\n¿Qué te gustaría hacer?", optionsChatbot0);
-
-        // Definir Flujos adicionales para Chatbot 0
-        List<Option_21133732_PachecoParra> optionsFlow2 = new ArrayList<>();
-        // Ejemplo de opciones para el flujo 2
-        optionsFlow2.add(new Option_21133732_PachecoParra(1, "Opción 1 del Flujo 2", 0, 1, new ArrayList<>(List.of("keyword1", "keyword2"))));
-        Flow_21133732_PachecoParra flow2 = new Flow_21133732_PachecoParra(2, "Descripción del Flujo 2", optionsFlow2);
-
-        List<Option_21133732_PachecoParra> optionsFlow3 = new ArrayList<>();
-        // Ejemplo de opciones para el flujo 3
-        optionsFlow3.add(new Option_21133732_PachecoParra(1, "Opción 1 del Flujo 3", 0, 1, new ArrayList<>(List.of("keyword3", "keyword4"))));
-        Flow_21133732_PachecoParra flow3 = new Flow_21133732_PachecoParra(3, "Descripción del Flujo 3", optionsFlow3);
-
-        List<Flow_21133732_PachecoParra> flowsChatbot0 = new ArrayList<>();
-        flowsChatbot0.add(flowChatbot0);
-        flowsChatbot0.add(flow2);
-        flowsChatbot0.add(flow3);
-
-        Chatbot_21133732_PachecoParra chatbot0 = new Chatbot_21133732_PachecoParra(0, "Inicial", "Bienvenido\n¿Qué te gustaría hacer?", 1, flowsChatbot0);
-
-        // Definición de Chatbot 1 y Chatbot 2
-        // Chatbot 1
-        List<Option_21133732_PachecoParra> optionsChatbot1 = new ArrayList<>();
-        optionsChatbot1.add(new Option_21133732_PachecoParra(1, "1) Viajar", 0, 2, new ArrayList<>(List.of("viajar", "turistear", "conocer"))));
-        optionsChatbot1.add(new Option_21133732_PachecoParra(2, "2) Estudiar", 0, 3, new ArrayList<>(List.of("estudiar", "aprender", "perfeccionarme"))));
-        Flow_21133732_PachecoParra flowChatbot1 = new Flow_21133732_PachecoParra(1, "Flujo Principal Chatbot 1\nBienvenido\n¿Qué te gustaría hacer?", optionsChatbot1);
-
-        // Definir Flujos adicionales para Chatbot 1
-        List<Option_21133732_PachecoParra> optionsFlow2Chatbot1 = new ArrayList<>();
-        // Ejemplo de opciones para el flujo 2
-        optionsFlow2Chatbot1.add(new Option_21133732_PachecoParra(1, "Opción 1 del Flujo 2", 0, 1, new ArrayList<>(List.of("keyword1", "keyword2"))));
-        Flow_21133732_PachecoParra flow2Chatbot1 = new Flow_21133732_PachecoParra(2, "Descripción del Flujo 2", optionsFlow2Chatbot1);
-
-        List<Option_21133732_PachecoParra> optionsFlow3Chatbot1 = new ArrayList<>();
-        // Ejemplo de opciones para el flujo 3
-        optionsFlow3Chatbot1.add(new Option_21133732_PachecoParra(1, "Opción 1 del Flujo 3", 0, 1, new ArrayList<>(List.of("keyword3", "keyword4"))));
-        Flow_21133732_PachecoParra flow3Chatbot1 = new Flow_21133732_PachecoParra(3, "Descripción del Flujo 3", optionsFlow3Chatbot1);
-
-        List<Flow_21133732_PachecoParra> flowsChatbot1 = new ArrayList<>();
-        flowsChatbot1.add(flowChatbot1);
-        flowsChatbot1.add(flow2Chatbot1);
-        flowsChatbot1.add(flow3Chatbot1);
-
-        Chatbot_21133732_PachecoParra chatbot1 = new Chatbot_21133732_PachecoParra(1, "Inicial", "Bienvenido\n¿Qué te gustaría hacer?", 1, flowsChatbot1);
-
-        // Chatbot 2
-        List<Option_21133732_PachecoParra> optionsChatbot2 = new ArrayList<>();
-        optionsChatbot2.add(new Option_21133732_PachecoParra(1, "1) Viajar", 0, 2, new ArrayList<>(List.of("viajar", "turistear", "conocer"))));
-        optionsChatbot2.add(new Option_21133732_PachecoParra(2, "2) Estudiar", 0, 3, new ArrayList<>(List.of("estudiar", "aprender", "perfeccionarme"))));
-        Flow_21133732_PachecoParra flowChatbot2 = new Flow_21133732_PachecoParra(1, "Flujo Principal Chatbot 2\nBienvenido\n¿Qué te gustaría hacer?", optionsChatbot2);
-
-        // Definir Flujos adicionales para Chatbot 2
-        List<Option_21133732_PachecoParra> optionsFlow2Chatbot2 = new ArrayList<>();
-        // Ejemplo de opciones para el flujo 2
-        optionsFlow2Chatbot2.add(new Option_21133732_PachecoParra(1, "Opción 1 del Flujo 2", 0, 1, new ArrayList<>(List.of("keyword1", "keyword2"))));
-        Flow_21133732_PachecoParra flow2Chatbot2 = new Flow_21133732_PachecoParra(2, "Descripción del Flujo 2", optionsFlow2Chatbot2);
-
-        List<Option_21133732_PachecoParra> optionsFlow3Chatbot2 = new ArrayList<>();
-        // Ejemplo de opciones para el flujo 3
-        optionsFlow3Chatbot2.add(new Option_21133732_PachecoParra(1, "Opción 1 del Flujo 3", 0, 1, new ArrayList<>(List.of("keyword3", "keyword4"))));
-        Flow_21133732_PachecoParra flow3Chatbot2 = new Flow_21133732_PachecoParra(3, "Descripción del Flujo 3", optionsFlow3Chatbot2);
-
-        List<Flow_21133732_PachecoParra> flowsChatbot2 = new ArrayList<>();
-        flowsChatbot2.add(flowChatbot2);
-        flowsChatbot2.add(flow2Chatbot2);
-        flowsChatbot2.add(flow3Chatbot2);
-
-        Chatbot_21133732_PachecoParra chatbot2 = new Chatbot_21133732_PachecoParra(2, "Inicial", "Bienvenido\n¿Qué te gustaría hacer?", 1, flowsChatbot2);
-
-        // Creación de Usuarios
+        /**
+         * Crea instancias de los TDA Option, Flow, Chatbot, User y Sistema.
+         */
+        Option_21133732_PachecoParra op1 = new Option_21133732_PachecoParra(1, "1) Viajar", 1, 1, List.of("viajar", "turistear", "conocer"));
+        Option_21133732_PachecoParra op2 = new Option_21133732_PachecoParra(2, "2) Estudiar", 2, 1, List.of("estudiar", "aprender", "perfeccionarme"));
+        Option_21133732_PachecoParra op3 = new Option_21133732_PachecoParra(1, "1) New York, USA", 1, 2, List.of("USA", "Estados Unidos", "New York"));
+        Option_21133732_PachecoParra op4 = new Option_21133732_PachecoParra(2, "2) Paris, Francia", 1, 1, List.of("Paris", "Eiffel"));
+        Option_21133732_PachecoParra op5 = new Option_21133732_PachecoParra(3, "3) Torres del Paine, Chile", 1, 1, List.of("Chile", "Torres", "Paine", "Torres Paine", "Torres del Paine"));
+        Option_21133732_PachecoParra op6 = new Option_21133732_PachecoParra(4, "4) Volver", 0, 1, List.of("Regresar", "Salir", "Volver"));
+        Option_21133732_PachecoParra op7 = new Option_21133732_PachecoParra(1, "1) Central Park", 1, 2, List.of("Central", "Park", "Central Park"));
+        Option_21133732_PachecoParra op8 = new Option_21133732_PachecoParra(2, "2) Museos", 1, 2, List.of("Museo"));
+        Option_21133732_PachecoParra op9 = new Option_21133732_PachecoParra(3, "3) Ningun otro atractivo", 1, 3, List.of("Museo"));
+        Option_21133732_PachecoParra op10 = new Option_21133732_PachecoParra(4, "4) Cambiar destino", 1, 1, List.of("Cambiar", "Volver", "Salir"));
+        Option_21133732_PachecoParra op11 = new Option_21133732_PachecoParra(1, "1) Solo", 1, 3, List.of("Solo"));
+        Option_21133732_PachecoParra op12 = new Option_21133732_PachecoParra(2, "2) En pareja", 1, 3, List.of("Pareja"));
+        Option_21133732_PachecoParra op13 = new Option_21133732_PachecoParra(3, "3) En familia", 1, 3, List.of("Familia"));
+        Option_21133732_PachecoParra op14 = new Option_21133732_PachecoParra(4, "4) Agregar mas atractivos", 1, 2, List.of("Volver", "Atractivos"));
+        Option_21133732_PachecoParra op15 = new Option_21133732_PachecoParra(5, "5) En realidad quiero otro destino", 1, 1, List.of("Cambiar destino"));
+        Option_21133732_PachecoParra op16 = new Option_21133732_PachecoParra(1, "1) Carrera Tecnica", 2, 1, List.of("Técnica"));
+        Option_21133732_PachecoParra op17 = new Option_21133732_PachecoParra(2, "2) Postgrado", 2, 1, List.of("Doctorado", "Magister", "Postgrado"));
+        Option_21133732_PachecoParra op18 = new Option_21133732_PachecoParra(3, "3) Volver", 0, 1, List.of("Volver", "Salir", "Regresar"));
+        Flow_21133732_PachecoParra f10 = new Flow_21133732_PachecoParra(1, "Flujo Principal Chatbot 1\nBienvenido\n¿Que te gustaria hacer?", List.of(op1, op2));
+        Flow_21133732_PachecoParra f20 = new Flow_21133732_PachecoParra(1, "Flujo 1 Chatbot1\n¿Donde te gustaria ir?", List.of(op3, op4, op5, op6));
+        Flow_21133732_PachecoParra f21 = new Flow_21133732_PachecoParra(2, "Flujo 2 Chatbot1\n¿Que atractivos te gustaria visitar?", List.of(op7, op8, op9, op10));
+        Flow_21133732_PachecoParra f22 = new Flow_21133732_PachecoParra(3, "Flujo 3 Chatbot1\n¿Vas solo o con mas personas?", List.of(op11, op12, op13, op14, op15));
+        Flow_21133732_PachecoParra f30 = new Flow_21133732_PachecoParra(1, "Flujo 1 Chatbot2\n¿Que te gustaria estudiar?", List.of(op16, op17, op18));
+        Chatbot_21133732_PachecoParra cb0 = new Chatbot_21133732_PachecoParra(0, "Inicial", "Bienvenido ¿Que te gustaria hacer?", 1, List.of(f10));
+        Chatbot_21133732_PachecoParra cb1 = new Chatbot_21133732_PachecoParra(1, "Agencia Viajes", "Bienvenido ¿Donde quieres viajar?", 1, List.of(f20, f21, f22));
+        Chatbot_21133732_PachecoParra cb2 = new Chatbot_21133732_PachecoParra(2, "Orientador Académico", "Bienvenido ¿Que te gustaria estudiar?", 1, List.of(f30));
+        List<User_21133732_PachecoParra> users = new ArrayList<>();
         User_21133732_PachecoParra user1 = new User_21133732_PachecoParra("user1", true);
         User_21133732_PachecoParra user2 = new User_21133732_PachecoParra("user2", false);
-        User_21133732_PachecoParra user3 = new User_21133732_PachecoParra("user3", true);
-        List<User_21133732_PachecoParra> usuarios = new ArrayList<>();
-        usuarios.add(user1);
-        usuarios.add(user2);
-        usuarios.add(user3);
+        users.add(user1);
+        users.add(user2);
 
-        // Creación del sistema con los chatbots y usuarios
-        Sistema_21133732_PachecoParra sistema = new Sistema_21133732_PachecoParra("Chatbots Paradigmas", 0, new ArrayList<>(List.of(chatbot0, chatbot1, chatbot2)), usuarios, user1, new ArrayList<>());
+        Sistema_21133732_PachecoParra sistema = new Sistema_21133732_PachecoParra("Chatbots Paradigmas", 0, new ArrayList<>(List.of(cb0, cb1, cb1)), users, user1, new ArrayList<>());
 
-        // Sincronizar usuarios y ejecutar el menú principal
+        /**
+         * Carga datos en el sistema.
+         */
+        CargaDatos_21133732_PachecoParra.addOption(op1);
+        CargaDatos_21133732_PachecoParra.addOption(op2);
+        CargaDatos_21133732_PachecoParra.addOption(op3);
+        CargaDatos_21133732_PachecoParra.addOption(op4);
+        CargaDatos_21133732_PachecoParra.addOption(op5);
+        CargaDatos_21133732_PachecoParra.addOption(op6);
+        CargaDatos_21133732_PachecoParra.addOption(op7);
+        CargaDatos_21133732_PachecoParra.addOption(op8);
+        CargaDatos_21133732_PachecoParra.addOption(op9);
+        CargaDatos_21133732_PachecoParra.addOption(op10);
+        CargaDatos_21133732_PachecoParra.addOption(op11);
+        CargaDatos_21133732_PachecoParra.addOption(op12);
+        CargaDatos_21133732_PachecoParra.addOption(op13);
+        CargaDatos_21133732_PachecoParra.addOption(op14);
+        CargaDatos_21133732_PachecoParra.addOption(op15);
+        CargaDatos_21133732_PachecoParra.addOption(op16);
+        CargaDatos_21133732_PachecoParra.addOption(op17);
+        CargaDatos_21133732_PachecoParra.addOption(op18);
+        CargaDatos_21133732_PachecoParra.addFlow(f10);
+        CargaDatos_21133732_PachecoParra.addFlow(f20);
+        CargaDatos_21133732_PachecoParra.addFlow(f21);
+        CargaDatos_21133732_PachecoParra.addFlow(f22);
+        CargaDatos_21133732_PachecoParra.addFlow(f30);
+        CargaDatos_21133732_PachecoParra.addChatbot(cb0);
+        CargaDatos_21133732_PachecoParra.addChatbot(cb1);
+        CargaDatos_21133732_PachecoParra.addChatbot(cb2);
+        CargaDatos_21133732_PachecoParra.addUser(user1);
+        CargaDatos_21133732_PachecoParra.addUser(user2);
+
+        /**
+         * Sincroniza los usuarios registrados con el sistema.
+         */
         Menu_21133732_PachecoParra.sincronizarUsuarios(sistema.getUsersRegistrados());
+
+        /**
+         * Ejecuta el menú principal.
+         */
         Menu_21133732_PachecoParra.main(sistema);
     }
 }

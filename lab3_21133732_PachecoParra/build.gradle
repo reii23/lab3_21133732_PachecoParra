@@ -3,7 +3,7 @@ plugins {
 }
 
 application {
-    mainClassName = 'org.example.Main'
+    mainClassName = 'org.example.Main_21133732_PachecoParra'
 }
 
 group = 'org.example'
@@ -20,4 +20,8 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+run {
+    standardInput = System.in
 }
