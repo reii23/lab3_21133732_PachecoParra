@@ -1,7 +1,6 @@
 package org.example;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Clase que representa una opción de un flujo en un sistema de chatbots

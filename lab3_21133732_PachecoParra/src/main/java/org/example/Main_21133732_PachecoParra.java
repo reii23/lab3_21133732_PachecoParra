@@ -1,9 +1,7 @@
 package org.example;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Flow;
 
 /**
  * Clase que representa el main del programa
@@ -51,7 +49,7 @@ public class Main_21133732_PachecoParra {
         users.add(user1);
         users.add(user2);
 
-        Sistema_21133732_PachecoParra sistema = new Sistema_21133732_PachecoParra("Chatbots Paradigmas", 0, new ArrayList<>(List.of(cb0, cb1, cb1)), users, user1, new ArrayList<>());
+        Sistema_21133732_PachecoParra sistema = new Sistema_21133732_PachecoParra("Chatbots Paradigmas", 0, new ArrayList<>(List.of(cb0, cb1, cb2)), users, user1, new ArrayList<>());
 
         /**
          * Carga datos en el sistema.

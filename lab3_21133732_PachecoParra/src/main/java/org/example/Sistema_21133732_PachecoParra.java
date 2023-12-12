@@ -140,26 +140,23 @@ public class Sistema_21133732_PachecoParra implements InterfaceSistema_21133732_
 
     // RFN12 TDA Sistema - systemTalk
     /**
-     * Gestiona la interacción del sistema con el usuario a través de un proceso de chat.
-     * Este método busca el chatbot inicial utilizando el identificador de chatbot inicial. Si no se encuentra,
-     * muestra un mensaje de error y termina la interacción.
-     *
-     * Una vez obtenido el chatbot inicial, inicia un flujo de conversación presentando opciones al usuario
-     * y manejando sus entradas. El usuario puede seleccionar opciones dentro del flujo actual o salir de la conversación.
-     *
-     * Si el usuario selecciona una opción que lleva a un chatbot diferente, el sistema cambia al nuevo chatbot y continua
-     * la conversación desde el flujo inicial de este nuevo chatbot.
-     *
-     * El metodo registra el historial de la conversación.
+     * Inicia una conversación con el chatbot inicial.
+     * Se muestran los mensajes de bienvenida y las opciones disponibles.
+     * Se solicita al usuario que ingrese una opción.
+     * Si la opción es válida, se muestra el mensaje asociado con la opción y se pasa al siguiente flujo.
+     * Si la opción no es válida, se muestra un mensaje de error y se solicita al usuario que ingrese una opción nuevamente.
+     * Si el flujo no se encuentra, se muestra un mensaje de error y se finaliza la conversación.
+     * Si el chatbot no se encuentra, se muestra un mensaje de error y se finaliza la conversación.
+     * Si el usuario ingresa "salir", se muestra un mensaje de despedida y se finaliza la conversación.
      */
 
     public void systemTalk() {
-        Chatbot_21133732_PachecoParra currentChatbot = findChatbotById(this.initialChatbotCodeLink);
+        Chatbot_21133732_PachecoParra currentChatbot = findChatbotId(this.initialChatbotCodeLink);
         if (currentChatbot == null) {
             System.out.println("No se encuentra el chatbot inicial.");
             return;
         }
-        Flow_21133732_PachecoParra currentFlow = findFlowById(currentChatbot, currentChatbot.getStartFlowId());
+        Flow_21133732_PachecoParra currentFlow = findFlowId(currentChatbot, currentChatbot.getStartFlowId());
         Scanner scanner = new Scanner(System.in);
         while (true) {
             if (currentFlow == null) {
@@ -177,20 +174,20 @@ public class Sistema_21133732_PachecoParra implements InterfaceSistema_21133732_
                 System.out.println("Hasta pronto!");
                 break;
             }
-            Option_21133732_PachecoParra chosenOption = findOptionByCode(currentFlow, userChoice);
+            Option_21133732_PachecoParra chosenOption = findOptionCode(currentFlow, userChoice);
             if (chosenOption == null) {
                 System.out.println("Opcion no valida, intentalo nuevamente.");
                 continue;
             }
             chatHistory.add("Usuario " + this.userLogeado.getUsername() + " selecciono la opcion: " + chosenOption.getMessage());
             if (chosenOption.getChatbotCodeLink() != currentChatbot.getChatbotID()) {
-                currentChatbot = findChatbotById(chosenOption.getChatbotCodeLink());
+                currentChatbot = findChatbotId(chosenOption.getChatbotCodeLink());
                 if (currentChatbot == null) {
                     System.out.println("Chatbot no encontrado. Se finaliza la conversacion");
                     break;
                 }
             }
-            currentFlow = findFlowById(currentChatbot, chosenOption.getInitialFlowCodeLink());
+            currentFlow = findFlowId(currentChatbot, chosenOption.getInitialFlowCodeLink());
         }
     }
 
@@ -201,7 +198,7 @@ public class Sistema_21133732_PachecoParra implements InterfaceSistema_21133732_
      * @param flowId  el id del flujo
      * @return el flujo encontrado o null si no se encuentra
      */
-    private Flow_21133732_PachecoParra findFlowById(Chatbot_21133732_PachecoParra chatbot, int flowId) {
+    private Flow_21133732_PachecoParra findFlowId(Chatbot_21133732_PachecoParra chatbot, int flowId) {
         return chatbot.getFlows().stream()
                 .filter(flujo -> flujo.getId() == flowId)
                 .findFirst()
@@ -215,7 +212,7 @@ public class Sistema_21133732_PachecoParra implements InterfaceSistema_21133732_
      * @param code el código de la opción
      * @return la opción encontrada o null si no se encuentra
      */
-    private Option_21133732_PachecoParra findOptionByCode(Flow_21133732_PachecoParra flow, String code) {
+    private Option_21133732_PachecoParra findOptionCode(Flow_21133732_PachecoParra flow, String code) {
         try {
             int optionCode = Integer.parseInt(code.trim());
             return flow.getOptions().stream()
@@ -233,7 +230,7 @@ public class Sistema_21133732_PachecoParra implements InterfaceSistema_21133732_
      * @param chatbotId el id del chatbot
      * @return el chatbot encontrado o null si no se encuentra
      */
-    private Chatbot_21133732_PachecoParra findChatbotById(int chatbotId) {
+    private Chatbot_21133732_PachecoParra findChatbotId(int chatbotId) {
         return this.chatbots.stream()
                 .filter(chatbot -> chatbot.getChatbotID() == chatbotId)
                 .findFirst()
@@ -246,13 +243,8 @@ public class Sistema_21133732_PachecoParra implements InterfaceSistema_21133732_
      * Se agrega la fecha y hora de cada mensaje.
      */
     public void systemSynthesis() {
-        if (this.userLogeado == null) {
-            System.out.println("Por favor, inicie sesión para usar el chatbot.");
-            return;
-        }
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        System.out.println("Síntesis del chatbot para el usuario " + this.userLogeado.getUsername() + ":");
+        System.out.println("Sintesis del chatbot para el usuario " + this.userLogeado.getUsername() + ":");
         for (String message : this.chatHistory) {
             String formattedDateTime = LocalDateTime.now().format(formatter);
             System.out.println("[" + formattedDateTime + "] " + message);
@@ -269,7 +261,7 @@ public class Sistema_21133732_PachecoParra implements InterfaceSistema_21133732_
      */
     public void systemSimulate(int maxInteractions, int seed) {
         if (this.chatbots.size() < 2) {
-            System.out.println("Se requieren al menos dos chatbots para ejecutar la simulacion.");
+            System.out.println("Se requieren dos chatbots para ejecutar la simulacion.");
             return;
         }
         Random random = new Random(seed);
@@ -281,7 +273,7 @@ public class Sistema_21133732_PachecoParra implements InterfaceSistema_21133732_
                 continue;
             }
             String mensajeChatbot1 = "Chatbot " + chatbot1.getChatbotID() + " dice: " + generarMensaje(random);
-            String mensajeChatbot2 = "Chatbot " + chatbot2.getChatbotID() + " responde: " + generarMensaje(random);
+            String mensajeChatbot2 = "Chatbot " + chatbot2.getChatbotID() + " dice: " + generarMensaje(random);
             this.chatHistory.add(mensajeChatbot1);
             this.chatHistory.add(mensajeChatbot2);
             System.out.println(mensajeChatbot1);

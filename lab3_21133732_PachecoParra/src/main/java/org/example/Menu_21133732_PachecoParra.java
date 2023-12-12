@@ -1,7 +1,6 @@
 
 package org.example;
 
-import java.sql.SQLOutput;
 import java.util.*;
 
 /**
@@ -16,7 +15,6 @@ public class Menu_21133732_PachecoParra {
     private static Map<Integer, Chatbot_21133732_PachecoParra> chatbots = new HashMap<>();
     private static Scanner scanner = new Scanner(System.in);
     private static Map<String, Boolean> usuariosRegistrados = new HashMap<>();
-
 
     /**
      * Punto de entrada principal para mostrar el menú del sistema de chatbots.
@@ -82,6 +80,7 @@ public class Menu_21133732_PachecoParra {
     /**
      * Maneja el proceso de registro de nuevos usuarios.
      * Permite a los usuarios registrarse como usuarios normales o administradores.
+     * @see User_21133732_PachecoParra
      */
     private static void procesoRegistro() {
         System.out.println("### Sistema de Chatbots - Registro ###");
@@ -95,20 +94,25 @@ public class Menu_21133732_PachecoParra {
         System.out.println("1. Registrar usuario normal");
         System.out.println("2. Registrar usuario administrador");
         System.out.print("INTRODUZCA SU OPCION:");
-        int opcionRegistro = scanner.nextInt();
-        scanner.nextLine();
-        switch (opcionRegistro) {
-            case 1:
-                usuariosRegistrados.put(nombreUsuario, false);
-                System.out.println("Usuario normal registrado exitosamente.");
-                break;
-            case 2:
-                usuariosRegistrados.put(nombreUsuario, true);
-                System.out.println("Usuario administrador registrado exitosamente.");
-                break;
-            default:
-                System.out.println("Opcion no válida.");
-                break;
+        try {
+            int opcionRegistro = scanner.nextInt();
+            scanner.nextLine();
+            switch (opcionRegistro) {
+                case 1:
+                    usuariosRegistrados.put(nombreUsuario, false);
+                    System.out.println("Usuario normal registrado exitosamente.");
+                    break;
+                case 2:
+                    usuariosRegistrados.put(nombreUsuario, true);
+                    System.out.println("Usuario administrador registrado exitosamente.");
+                    break;
+                default:
+                    System.out.println("Opcion no valida.");
+                    break;
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Por favor, introduce un número entero.");
+            scanner.nextLine();
         }
     }
 
@@ -147,9 +151,14 @@ public class Menu_21133732_PachecoParra {
             System.out.println("8. Simulacion entre Chatbots");
             System.out.println("9. Salir");
             System.out.print("INTRODUZCA SU OPCION:");
-
-            int opcion = scanner.nextInt();
-            scanner.nextLine();
+            try {
+                int opcion = 0;
+                if (scanner.hasNextInt()) {
+                    opcion = scanner.nextInt();
+                    scanner.nextLine();
+                } else {
+                    throw new InputMismatchException("Ingresa un numero entero");
+                }
 
             switch (opcion) {
                 case 1:
@@ -180,8 +189,12 @@ public class Menu_21133732_PachecoParra {
                     continuar = false;
                     break;
                 default:
-                    System.out.println("Opcion no válida.");
+                    System.out.println("Opcion no valida.");
                     break;
+            }
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada no valida: " + e.getMessage());
+                scanner.nextLine();
             }
         }
     }
@@ -198,8 +211,10 @@ public class Menu_21133732_PachecoParra {
             System.out.println("2. Modificar opcion");
             System.out.println("3. Salir al menu anterior");
             System.out.print("INTRODUZCA SU OPCION:");
+            try {
             int opcion = scanner.nextInt();
             scanner.nextLine();
+
             switch (opcion) {
                 case 1:
                     crearOpcion();
@@ -210,8 +225,12 @@ public class Menu_21133732_PachecoParra {
                 case 3:
                     return true;
                 default:
-                    System.out.println("Opcion no válida, intentelo nuevamente");
+                    System.out.println("Opcion no valida, intentelo nuevamente");
                     break;
+            }
+            } catch (InputMismatchException e) {
+                System.out.println("Por favor, introduce un numero entero.");
+                scanner.nextLine();
             }
         }
     }
@@ -228,7 +247,7 @@ public class Menu_21133732_PachecoParra {
         scanner.nextLine();
 
         if (opciones.containsKey(codeOption)) {
-            System.out.println("Error: El código de opcion ya existe.");
+            System.out.println("Error: El codigo de opcion ya existe.");
             return;
         }
 
@@ -295,21 +314,42 @@ public class Menu_21133732_PachecoParra {
      * @return true si el usuario desea salir al menú anterior, false en caso contrario
      */
     private static void menuFlow() {
+        boolean continuar = true;
+        while (continuar) {
         System.out.println("### Sistema de Chatbots - Menu Flow ###");
         System.out.println("1. Crear flujo");
         System.out.println("2. Agregar opcion a flujo");
         System.out.println("3. Salir al menu principal");
         System.out.print("INTRODUZCA SU OPCION:");
-        int opcion = scanner.nextInt();
-        scanner.nextLine();
-        switch (opcion) {
+        try {
+            int opcion = 0;
+            if (scanner.hasNextInt()) {
+                opcion = scanner.nextInt();
+                scanner.nextLine();
+            } else {
+                System.out.println("Por favor, introduce un numero entero.");
+                scanner.nextLine();
+                continue;
+            }
+
+            switch (opcion) {
             case 1:
                 crearFlow();
-
             case 2:
                 modificarFlow();
+            case 3:
+                continuar = false;
+                break;
+            default:
+                System.out.println("Opción no valida, intentelo nuevamente");
+                break;
+        }
+        } catch (InputMismatchException e) {
+            System.out.println("Por favor, introduce un numero entero.");
+            scanner.nextLine();
         }
     }
+}
 
     /**
      * Muestra el menú crearFlow
@@ -530,8 +570,15 @@ public class Menu_21133732_PachecoParra {
         System.out.println("6. Salir");
         System.out.print("INTRODUZCA SU OPCION:");
 
-        int opcion = scanner.nextInt();
-        scanner.nextLine();
+            int opcion = 0;
+            if (scanner.hasNextInt()) {
+                opcion = scanner.nextInt();
+                scanner.nextLine();
+            } else {
+                System.out.println("Por favor, introduce un número entero.");
+                scanner.nextLine();
+                continue;
+            }
 
         switch (opcion) {
             case 1:
