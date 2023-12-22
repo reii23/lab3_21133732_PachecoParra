@@ -1,0 +1,32 @@
+------------------RNF--------------------
+
+RNF1: Autoevaluación - Puntaje Asociado: 1.0
+RNF2: Lenguaje y herramientas de trabajo - Puntaje Asociado: 1.0
+RNF3: Interacciones con el programa - Puntaje Asociado: 1.0
+RNF4: Uso del paradigma - Puntaje Asociado: 1.0
+RFN5: Prerrequisitos - Puntaje Asociado: 1.0
+RFN6: Documentación Javadoc - Puntaje Asociado: 1.0
+RFN7: Organización del código - Puntaje Asociado: 1.0
+RFN8: Diagrama de análisis - Puntaje Asociado 1.0
+RF9: Diagrama de diseño - Puntaje Asociado 1.0
+
+-----------------RFN----------------------
+
+RFN1: TDAs - Clases y estructuras que forman el programa- Puntaje Asociado: 1.0
+RFN2: Menú interactivo por terminal - Puntaje Asociado: 1.0
+RFN3: Option - constructor - Puntaje Asociado: 1.0
+RFN4: Flow - constructor - Puntaje Asociado: 1.0
+RFN5: flowAddOption - modificador - Puntaje Asociado: 1.0
+RFN6: chatbot - constructor - Puntaje Asociado: 1.0
+RFN7: chatbotAddFlow - modificador - Puntaje Asociado: 1.0
+RFN8: user - constructor - Puntaje Asociado: 1.0
+RFN9: system - constructor - Puntaje Asociado: 1.0
+RFN10: systemAddChatbot - modificador - Puntaje Asociado: 1.0
+RFN11: systemAddUser - modificador - Puntaje Asociado: 1.0
+RFN12: systemLogin - Puntaje Asociado: 1.0
+RFN13: systemLogout - Puntaje Asociado: 1.0
+RFN14: systemTalk - Puntaje Asociado: 1.0
+RFN15: systemSynthesis - Puntaje Asociado: 1.0
+RFN16: systemSimulate - Puntaje Asociado: 1.0
+
+
